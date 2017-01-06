@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block title %}Delete task{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form action="" method="post">{% csrf_token %}
+                <p>Are you sure you want to delete "{{ task.description }}"?</p>
+                <button class="btn btn-danger" type="submit">Delete</button>
+                <a href="/" class="btn btn-default">No</a>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+{% endblock %}

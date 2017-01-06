@@ -1,0 +1,14 @@
+<li id="task_{{task.id}}" class="list-group-item">
+    <div class="checkbox">
+        <input type="checkbox" id="task_is_done_{{task.id}}" data-id="{{task.id}}" {% if task.is_done %}
+               checked="checked" {% endif %}/>
+        <label for="task_is_done_{{task.id}}">{{task.description}}</label>
+    </div>
+    <div class="pull-right action-buttons">
+        <a href="#" class="pencil" data-id="{{task.id}}" data-is-done="{{task.is_done|yesno:" true,false"}}"
+        data-description="{{task.description}}"
+        data-toggle="modal" data-target="#modal_edit"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#" class="trash" data-id="{{task.id}}" data-toggle="modal"
+           data-target="#modal_delete"><span class="glyphicon glyphicon-trash"></span></a>
+    </div>
+</li>

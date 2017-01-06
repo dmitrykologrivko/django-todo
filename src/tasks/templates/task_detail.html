@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+{% block title %}Task detail{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <p>
+                id: {{ task.id }}
+            </p>
+            <p>
+                description: {{ task.description }}
+            </p>
+            <p>
+                {% if task.is_done %}
+                is done &#10004;
+                {% else %}
+                is not done &#10008;
+                {% endif %}
+            </p>
+            <p>
+                date: {{ task.created|date:"D d M Y" }}
+            </p>
+            <p>
+                <a href="edit" class="btn btn-success">Edit</a>
+                <a href="delete" class="btn btn-danger">Delete</a>
+            </p>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+{% endblock %}

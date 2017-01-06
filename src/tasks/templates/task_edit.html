@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block title %}Edit task{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-success" type="submit">Update task</button>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+{% endblock %}

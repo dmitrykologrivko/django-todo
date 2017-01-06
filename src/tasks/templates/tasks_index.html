@@ -1,0 +1,95 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block additional_css %}
+    {{ block.super }}
+    <!--Tasks css-->
+    <link type="text/css" href="{% static "tasks/css/tasks.css" %}" rel="stylesheet">
+{% endblock %}
+{% block title %}{{user}}{% endblock %}
+{% block content %}
+    <div class="container">
+        <!--Error alert-->
+        <div id="error_alert" class="alert alert-danger alert-dismissible fade in" role="alert" style="display:none;">
+            <button type="button" class="close" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 id="error_title"></h4>
+            <p id="error_message"></p>
+        </div>
+        <!-- Add task form -->
+        <form id="form_create" action="/create/" method="post">{% csrf_token %}
+            <div class="input-group">
+                <input id="id_description" maxlength="255" name="description" type="text" class="form-control"
+                       placeholder="What needs to be done?">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Add task</button>
+                </div>
+            </div>
+        </form>
+        <!-- Outstanding tasks -->
+        <h3>Outstanding tasks</h3>
+        <ul id="outstanding_tasks" class="list-group">
+            {% for task in tasks %}
+                {% if not task.is_done %}
+                    {% include "task_item.html" %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <!-- Completed tasks -->
+        <h3>Completed tasks</h3>
+        <ul id="completed_tasks" class="list-group checked-list-box">
+            {% for task in tasks %}
+                {% if task.is_done %}
+                    {% include "task_item.html" %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- Edit task modal dialog -->
+    <div class="modal fade" id="modal_edit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4>Edit task</h4>
+                </div>
+                <div class="modal-body">
+                    <form>{% csrf_token %}
+                        <div class="form-group">
+                            <label for="task_description" class="control-label">Description:</label>
+                            <input type="text" class="form-control" id="task_description" maxlength="255"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-success btn-ok" type="button" data-dismiss="modal">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete task modal dialog -->
+    <div class="modal fade" id="modal_delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4>Confirm delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure want delete this taks?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger btn-ok" type="button" data-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block additional_js %}
+    {{ block.super }}
+    <!-- Tasks script -->
+    <script src="{% static "tasks/js/tasks.js" %}"></script>
+{% endblock %}

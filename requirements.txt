@@ -1,1 +1,4 @@
 Django==1.10.4
+django-generic-ajax-views==0.1.0
+django-guardian==1.4.6
+six==1.10.0
