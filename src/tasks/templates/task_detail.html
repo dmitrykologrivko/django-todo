@@ -1,10 +1,8 @@
 {% extends "main.html" %}
 {% block title %}Task detail{% endblock %}
-{% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
+{% block main %}
+    <div class="container">
+        <div class="center-content">
             <p>
                 id: {{ task.id }}
             </p>
@@ -22,11 +20,9 @@
                 date: {{ task.created|date:"D d M Y" }}
             </p>
             <p>
-                <a href="edit" class="btn btn-success">Edit</a>
-                <a href="delete" class="btn btn-danger">Delete</a>
+                <a href="edit" class="btn btn-success btn-block">Edit</a>
+                <a href="delete" class="btn btn-danger btn-block">Delete</a>
             </p>
         </div>
-        <div class="col-sm-4"></div>
     </div>
-</div>
 {% endblock %}

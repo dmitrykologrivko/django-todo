@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'guardian',
     'ajax_views',
     # own apps
-    'tasks'
+    'accounts',
+    'tasks',
 ]
 
 MIDDLEWARE = [
@@ -112,6 +113,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+# Login redirect url
+# https://docs.djangoproject.com/en/1.10/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = '/'
 
 
 # Internationalization

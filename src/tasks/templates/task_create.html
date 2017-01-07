@@ -1,16 +1,12 @@
 {% extends "main.html" %}
 {% block title %}Create task{% endblock %}
-{% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
+{% block main %}
+    <div class="container">
+        <div class="center-content">
             <form action="" method="post">{% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-primary" type="submit">Add task</button>
+                <button class="btn btn-primary btn-block" type="submit">Add task</button>
             </form>
         </div>
-        <div class="col-sm-4"></div>
     </div>
-</div>
 {% endblock %}

@@ -27,7 +27,7 @@ class TaskCreateView(PermissionRequiredMixin, CreateView):
         return resp
 
 
-class TasksListView(PermissionListMixin, ListView):
+class TasksListView(PermissionRequiredMixin, PermissionListMixin, ListView):
     template_name = 'tasks_index.html'
     context_object_name = 'tasks'
     permission_required = ['tasks.view_task']

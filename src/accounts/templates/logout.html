@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Sign Out{% endblock %}
+{% block main %}
+    <div class="container">
+        <div class="center-content">
+            <h2>Signed out</h2>
+            <p>You have been successfully signed out.</p>
+            <p><a href="{% url 'login' %}">Sign In</a> again.</p>
+        </div>
+    </div>
+{% endblock %}
