@@ -30,5 +30,10 @@ urlpatterns += [
     url(r'^ajax/tasks/', include('tasks.ajax.urls'), name='tasks-ajax'),
 ]
 
+# API
+urlpatterns += [
+    url(r'^api/tasks/', include('tasks.api.urls'), name='tasks-api'),
+]
+
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

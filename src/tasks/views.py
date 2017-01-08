@@ -30,11 +30,9 @@ class TaskCreateView(PermissionRequiredMixin, CreateView):
 class TasksListView(PermissionRequiredMixin, PermissionListMixin, ListView):
     template_name = 'tasks_index.html'
     context_object_name = 'tasks'
+    model = Task
     permission_required = ['tasks.view_task']
-
-    def get_queryset(self):
-        # Get tasks only for current user
-        return Task.objects.filter(user=self.request.user)
+    get_objects_for_user_extra_kwargs = {'accept_global_perms': False}
 
 
 class TaskDetailView(PermissionRequiredMixin, DetailView):
@@ -59,5 +57,5 @@ class TaskDeleteView(PermissionRequiredMixin, DeleteView):
     context_object_name = 'task'
     model = Task
     success_url = '/'
-    permission_required = ['tasks.view_task', 'tasks.change_task']
+    permission_required = ['tasks.view_task', 'tasks.delete_task']
     raise_exception = True
