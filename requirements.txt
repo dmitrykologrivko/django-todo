@@ -1,5 +1,8 @@
 Django==1.10.4
+django-braces==1.10.0
 django-generic-ajax-views==0.1.0
 django-guardian==1.4.6
+django-oauth-toolkit==0.11.0
 djangorestframework==3.5.3
+oauthlib==1.1.2
 six==1.10.0

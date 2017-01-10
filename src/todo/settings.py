@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party apps
     'rest_framework',
+    'oauth2_provider',
     'guardian',
     'ajax_views',
     # own apps
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
 ROOT_URLCONF = 'todo.urls'
@@ -92,6 +94,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.10/ref/settings/#authentication-backends
 
 AUTHENTICATION_BACKENDS = (
+    'oauth2_provider.backends.OAuth2Backend',
     'django.contrib.auth.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend',
 )
@@ -118,6 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Login redirect url
 # https://docs.djangoproject.com/en/1.10/ref/settings/#login-redirect-url
+
 LOGIN_REDIRECT_URL = '/'
 
 
@@ -150,3 +154,15 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+
+
+# Rest framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}

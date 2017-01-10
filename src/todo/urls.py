@@ -18,6 +18,8 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from oauth2_provider.views import TokenView
+
 # general
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,6 +34,7 @@ urlpatterns += [
 
 # API
 urlpatterns += [
+    url(r'^api/o/token/$', TokenView.as_view(), name='oauth2-token'),
     url(r'^api/tasks/', include('tasks.api.urls'), name='tasks-api'),
 ]
 
