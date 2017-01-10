@@ -19,6 +19,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from oauth2_provider.views import TokenView
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Todo API')
 
 # general
 urlpatterns = [
@@ -35,6 +38,7 @@ urlpatterns += [
 # API
 urlpatterns += [
     url(r'^api/o/token/$', TokenView.as_view(), name='oauth2-token'),
+    url(r'^api/docs/$', schema_view, name='api-docs'),
     url(r'^api/tasks/', include('tasks.api.urls'), name='tasks-api'),
 ]
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party apps
     'rest_framework',
+    'rest_framework_swagger',
     'oauth2_provider',
     'guardian',
     'ajax_views',
@@ -168,4 +169,17 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissions',
         'rest_framework.permissions.DjangoObjectPermissions',
     )
+}
+
+
+# Swagger
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
 }

@@ -21,7 +21,8 @@
                         <ul class="dropdown-menu">
                             {% if user.is_superuser %}
                                 <li><a href="/admin">Admin panel</a></li>
-                                <li><a href="/api/tasks">API</a></li>
+                                <li><a href="/api/tasks">REST API</a></li>
+                                <li><a href="/api/docs">API docs</a></li>
                             {% endif %}
                             <li><a href="accounts/logout">Sign out</a></li>
                         </ul>

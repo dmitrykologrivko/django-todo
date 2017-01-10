@@ -1,7 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import DjangoObjectPermissionsFilter
 from rest_framework.permissions import DjangoModelPermissions
-
 from guardian.shortcuts import assign_perm
 
 from ..models import Task
