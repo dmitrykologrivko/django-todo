@@ -19,3 +19,6 @@ openapi-codec==1.2.1
 requests==2.12.4
 simplejson==3.10.0
 uritemplate==3.0.0
+
+# django-filter
+django-filter==1.0.2
