@@ -63,9 +63,8 @@ $(function() {
 		if (!id) throw 'task id is requirement';
 		$.ajax({
 			type: 'POST',
-			url: '/ajax/tasks/edit/',
+			url: '/ajax/tasks/' + id + '/edit/',
 			data: {
-				'pk': id,
 				'description': description,
 				'is_done': isDone
 			},
@@ -84,9 +83,8 @@ $(function() {
 		if (!id) throw 'task id is requirement';
 		$.ajax({
 			type: 'POST',
-			url: '/ajax/tasks/done/',
+			url: '/ajax/tasks/' + id + '/done/',
 			data: {
-				'pk': id,
 				'is_done': isDone
 			},
 			success: function(html) {
@@ -118,10 +116,8 @@ $(function() {
 		if (!id) throw 'task id is requirement';
 		$.ajax({
 			type: 'POST',
-			url: '/ajax/tasks/delete/',
-			data: {
-				'pk': id
-			},
+			url: '/ajax/tasks/' + id + '/delete/',
+			data: {},
 			success: function() {
 				$('#task_' + id).remove();
 				// Show empty indicators if it needs

@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'oauth2_provider',
     'guardian',
-    'ajax_views',
     # own apps
     'accounts',
     'tasks',
