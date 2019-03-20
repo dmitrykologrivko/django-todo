@@ -4,10 +4,10 @@ from ..models import Task
 
 
 class TaskFilter(FilterSet):
-    created_from = IsoDateTimeFilter(name='created', lookup_expr='gte')
-    created_to = IsoDateTimeFilter(name='created', lookup_expr='lte')
-    updated_from = IsoDateTimeFilter(name='updated', lookup_expr='gte')
-    updated_to = IsoDateTimeFilter(name='updated', lookup_expr='lte')
+    created_from = IsoDateTimeFilter(field_name='created', lookup_expr='gte')
+    created_to = IsoDateTimeFilter(field_name='created', lookup_expr='lte')
+    updated_from = IsoDateTimeFilter(field_name='updated', lookup_expr='gte')
+    updated_to = IsoDateTimeFilter(field_name='updated', lookup_expr='lte')
 
     class Meta:
         model = Task

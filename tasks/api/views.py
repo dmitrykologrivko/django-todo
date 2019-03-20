@@ -1,11 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import (
     DjangoObjectPermissionsFilter,
-    DjangoFilterBackend,
     SearchFilter,
     OrderingFilter
 )
 from rest_framework.permissions import DjangoModelPermissions
+from django_filters.rest_framework import DjangoFilterBackend
 from guardian.shortcuts import assign_perm
 
 from ..models import Task

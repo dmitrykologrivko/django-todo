@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party apps
     'rest_framework',
+    'django_filters',
     'rest_framework_swagger',
     'oauth2_provider',
     'guardian',
