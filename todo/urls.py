@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url, include
-from django.conf.urls.static import static
 from django.contrib import admin
 
 from oauth2_provider.views import TokenView
 from rest_framework_swagger.views import get_swagger_view
+
+from .static import static
 
 schema_view = get_swagger_view(title='Todo API')
 
