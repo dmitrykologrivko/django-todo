@@ -1,13 +1,20 @@
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render_to_response
 
-from ajax_views import AjaxCreateView, AjaxUpdateView, AjaxDeleteView
 from guardian.mixins import PermissionRequiredMixin
 from guardian.shortcuts import assign_perm
 
+from todo.mixins import (
+    AjaxCreateMixin,
+    AjaxUpdateMixin,
+    AjaxDeleteMixin
+)
 from ..models import Task
 
 
-class TaskCreateAjaxView(PermissionRequiredMixin, AjaxCreateView):
+class TaskCreateAjaxView(PermissionRequiredMixin, AjaxCreateMixin, CreateView):
+    template_name = 'task_item.html'
+    context_object_name = 'task'
     model = Task
     fields = ['description']
     permission_object = None
@@ -22,31 +29,26 @@ class TaskCreateAjaxView(PermissionRequiredMixin, AjaxCreateView):
         assign_perm('tasks.delete_task', self.request.user, self.object)
         return resp
 
-    def response(self, **kwargs):
-        return render_to_response('task_item.html', {'task': self.object})
 
-
-class TaskUpdateAjaxView(PermissionRequiredMixin, AjaxUpdateView):
+class TaskUpdateAjaxView(PermissionRequiredMixin, AjaxUpdateMixin, UpdateView):
+    template_name = 'task_item.html'
+    context_object_name = 'task'
     model = Task
     fields = ['description', 'is_done']
     permission_required = ['tasks.view_task', 'tasks.change_task']
     raise_exception = True
 
-    def response(self, **kwargs):
-        return render_to_response('task_item.html', {'task': self.object})
 
-
-class TaskDoneAjaxView(PermissionRequiredMixin, AjaxUpdateView):
+class TaskDoneAjaxView(PermissionRequiredMixin, AjaxUpdateMixin, UpdateView):
+    template_name = 'task_item.html'
+    context_object_name = 'task'
     model = Task
     fields = ['is_done']
     permission_required = ['tasks.view_task', 'tasks.change_task']
     raise_exception = True
 
-    def response(self, **kwargs):
-        return render_to_response('task_item.html', {'task': self.object})
 
-
-class TaskDeleteAjaxView(PermissionRequiredMixin, AjaxDeleteView):
+class TaskDeleteAjaxView(PermissionRequiredMixin, AjaxDeleteMixin, DeleteView):
     model = Task
     permission_required = ['tasks.view_task', 'tasks.delete_task']
     raise_exception = True
